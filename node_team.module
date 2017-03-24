@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * @file
+ * Module.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+
+/**
+ * Node_team_entity_presave.
+ */
+function node_team_entity_presave(EntityInterface $node) {
+  if (method_exists($node, 'getType') && $node->getType() == 'team') {
+    $title = $node->field_team_name->value;
+    $node->title->setValue($title);
+  }
+}
